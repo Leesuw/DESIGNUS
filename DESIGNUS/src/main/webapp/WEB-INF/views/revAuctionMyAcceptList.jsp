@@ -813,8 +813,7 @@ hr {
 			rap_ptnum : even
 		}
 		var sub = "";
-		$
-				.ajax({
+		$.ajax({
 
 					url : 'delinumSelect',
 					type : 'post',
@@ -874,8 +873,7 @@ hr {
 			rap_ptnum : even
 		}
 		var cub = "";
-		$
-				.ajax({
+		$.ajax({
 					url : 'delinumSelect',
 					type : 'post',
 					data : JSON.stringify(form),

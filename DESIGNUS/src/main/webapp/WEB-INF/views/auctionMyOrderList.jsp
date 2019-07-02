@@ -924,8 +924,7 @@ textarea {
 			aup_ptnum : even
 		}
 		var bb = "";
-		$
-				.ajax({
+		$.ajax({
 					url : 'reviewboard',
 					type : 'post',
 					data : JSON.stringify(form),

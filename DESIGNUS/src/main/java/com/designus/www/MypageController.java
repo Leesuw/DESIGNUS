@@ -40,6 +40,7 @@ public class MypageController {
 	
 
 	@RequestMapping(value = "/historylist", method = RequestMethod.GET)
+	//historylist : 마이페이지 메인 메뉴 ex)제작의뢰내역,제작의뢰요청내역 등등....
 	public ModelAndView historylist(String list) {
 		mav = pm.historylist(list);
 		System.out.println("view=" + mav.getViewName());
@@ -47,6 +48,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/privacyedit", method = RequestMethod.GET)
+	//마이페이지 메인)개인정보 수정
 	public ModelAndView privacyedit() {
 
 		mav = pm.privacyedit();
@@ -63,6 +65,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/nortowri", method = RequestMethod.GET)
+	//마이페이지 메인) 작가전환신청
 	public ModelAndView nortowri() {
 
 		mav = pm.nortowri();
@@ -118,7 +121,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/auctionMyOrderList", method = { RequestMethod.GET, RequestMethod.POST })
-
+    //마이페이지 메인)출품작 구매내역
 	public ModelAndView auctionMyOrderList(Integer pageNum, String kind) {
 		System.out.println("(컨트롤러)출품 구매 내역 리스트 시작!!");
 		mav = new ModelAndView();
@@ -160,7 +163,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/auctionMyAcceptList", method = { RequestMethod.GET, RequestMethod.POST })
-
+    // 마이페이지 메인) 출품작 판매 내역
 	public ModelAndView auctionMyAcceptList(Integer pageNum, String kind) {
 		System.out.println("아니 여긴 오는거 맞아??");
 		mav = new ModelAndView();
@@ -178,6 +181,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/revAuctionMyOrderList", method = { RequestMethod.GET, RequestMethod.POST })
+	//마이페이지 메인)제작의뢰 내역
 	public ModelAndView revAuctionMyOrderList(Integer pageNum, String kind, String aaaa) {
 		System.out.println("(컨트롤러)제작의뢰  시작");
 		mav = new ModelAndView();
@@ -193,28 +197,26 @@ public class MypageController {
 	@RequestMapping(value = "/requestby", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public ModelAndView requestby(revAuctionProgress rap) {
-		System.out.println("(컨트롤러)제작의뢰 스텝1 요청 시작");
+		//마이페이지 제작의뢰) 배송정보 입력시 요청  -step1
 		mav = new ModelAndView();
 		mav = pm.requestby(rap);
-		System.out.println("(컨트롤러)제작의뢰 스텝1 요청 마무리");
+		
 		return mav;
 	}
 
 	@RequestMapping(value = "/revaucinfocancel", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public ModelAndView revaucinfocancel(revAuctionProgress rap, Notify ni) {
+		//마이페이지 제작의뢰) 취소사유 입력 후 취소 -step1
 		System.out.println("(컨트롤러)제작의뢰 스텝1 취소 시작");
 		mav = new ModelAndView();
-		System.out.println("(컨트롤러)제작의뢰 스텝1 취소 중간테스트 1 ranum:" + rap.getRap_ranum());
-		System.out.println("(컨트롤러)제작의뢰 스텝1 취소 중간테스트 2 mbidw:" + rap.getRap_mbid_w());
-		System.out.println("(컨트롤러)제작의뢰 스텝1 취소 중간테스트 3 contents:" + ni.getNf_contents());
-
 		mav = pm.revaucinfocancel(rap, ni);
 		System.out.println("(컨트롤러)제작의뢰 스텝1 취소 마무리");
 		return mav;
 	}
 
 	@RequestMapping(value = "/revAuctionMyAcceptList", method = { RequestMethod.GET, RequestMethod.POST })
+	//마이페이지 메인)제작의뢰 접수 내역
 	public ModelAndView revAuctionMyAcceptList(Integer pageNum, String kind) {
 		System.out.println("(컨트롤러)제작의뢰 접수내역  시작");
 		mav = new ModelAndView();
@@ -225,6 +227,7 @@ public class MypageController {
 
 	@RequestMapping(value = "/revdelinumupload", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView revdelinumupload(revAuctionProgress rap) {
+		//마이페이지 제작의뢰) 배송번호  작성후 완료를 누를 시 -step2
 		System.out.println("(컨트롤러)제작의뢰 스텝3 배송보내기 시작");
 		mav = new ModelAndView();
 		mav = pm.revdelinumupload(rap);
@@ -235,6 +238,7 @@ public class MypageController {
 	@RequestMapping(value = "/boardapply", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public ModelAndView boardapply(MultipartHttpServletRequest multi) {
+		//마이페이지 제작의뢰) 구매 후기 쓰기 및 수령확인 작성후 완료를 누를 시 -step3
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].이용후기 게시판 작성:시작");
 		mav = pm.boardapply(multi);
@@ -243,7 +247,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/fullDelete", method = { RequestMethod.GET, RequestMethod.POST })
-
+       //마이페이지 메인)알림 전체 삭제
 	public ModelAndView fullDelete() {
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].이용후기 게시판 작성:시작");
@@ -253,7 +257,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/nodelete", method = { RequestMethod.GET, RequestMethod.POST })
-
+	//마이페이지 메인)알림 부분 삭제
 	public ModelAndView nodelete(Notify nf) {
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].이용후기 게시판 작성:시작");
@@ -265,15 +269,14 @@ public class MypageController {
 	@RequestMapping(value = "/AuctionGiveUp", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public ModelAndView AuctionGiveUp(AuctionTender at, String kind) {
+		//마이페이지 메인)참여중인 경매 포기
 		mav = new ModelAndView();
-		System.out.println("[컨트롤러].이용후기 게시판 작성:시작");
 		mav = pm.AuctionGiveUp(at, kind);
-		System.out.println("[컨트롤러].이용후기 게시판 작성:마무리!!");
 		return mav;
 	}
 
 	@RequestMapping(value = "/questionlist", method = { RequestMethod.GET, RequestMethod.POST })
-
+    //마이페이지 메인)1:1 문의 리스트
 	public ModelAndView questionlist(Integer pageNum, String kind) {
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].1:1 문의 리스트:시작");
@@ -306,7 +309,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/fundingAcceptList", method = { RequestMethod.GET, RequestMethod.POST })
-
+    //마이페이지 메인)후원 진행 내역
 	public ModelAndView fundingAcceptList(Integer pageNum, String kind,String aaaa) {
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].후원 진행 내역:시작");
@@ -319,7 +322,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/fundingOrderList", method = { RequestMethod.GET, RequestMethod.POST })
-
+    //마이페이지 메인) 후원 요청 내역
 	public ModelAndView fundingOrderList(Integer pageNum, String kind) {
 		mav = new ModelAndView();
 		System.out.println("[컨트롤러].1:1 문의 리스트:시작");

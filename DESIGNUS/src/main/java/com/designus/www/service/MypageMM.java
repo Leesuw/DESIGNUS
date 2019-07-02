@@ -901,19 +901,19 @@ public class MypageMM {
 		List<SponsorProgress> spList = null;
 		List<Integer> stList = new ArrayList<Integer>();
 		String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.S"));
-		// ("yyyy-MM-dd hh:mm:ss.S");
+		
 
 		System.out.println("today=" + today);
 		String id = session.getAttribute("id").toString();
 
 		Member mb = new Member();
 		mb = pDao.mypagemoveSelect(id);
-		NoList = pDao.notismypageSelect(id);
-		// apsList=pDao.AuctionProSelect(id);
-		apsList = pDao.auctionInfoSelect(id);
-		spList = pDao.sponsorProgress(id);
+		NoList = pDao.notismypageSelect(id);//마이페이지 메인) 알림 표시하기
+		apsList = pDao.auctionInfoSelect(id);//마이페이지 메인) 참여중인 경매
+		spList = pDao.sponsorProgress(id);//마이페이지 메인) 참여중인 후원
 		for (int i = 0; i < spList.size(); i++) {
 			stList.addAll(pDao.SponsorTenderSelect(spList.get(i)));
+		     //상품당 후원 밀어준 인원 수
 		}
 		System.out.println("그럼 마지막은??=" + stList.size());
 		Gson gson = new Gson();
@@ -922,8 +922,7 @@ public class MypageMM {
 		mav.addObject("stList", stList);
 		mav.addObject("spgList", spgList);
 		mav.addObject("today", today);
-		// mav.addObject("today", todayy);
-		// 금,은,동
+		
 		int g = pDao.gold(id);
 		int s = pDao.silver(id);
 		int c = pDao.copper(id);
@@ -933,9 +932,10 @@ public class MypageMM {
 
 		for (int i = 0; i < apsList.size(); i++) {
 			maxpList.addAll(pDao.auctionMaxSelect(apsList.get(i).getAut_aunum()));
+			//상품별 경매 최고 금액
 		}
 
-		// apsMap.put("maxpList",maxpList);
+		
 
 		String str = gson.toJson(NoList);
 

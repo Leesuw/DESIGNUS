@@ -83,25 +83,22 @@ public class AjaxMypageController {
 	@RequestMapping(value = "/request", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json;charset=utf8")
 	public String request(@RequestBody revAuctionProgress rap) {
-		System.out.println("(컨트롤러)제작의뢰내역 스타트!!!");
-		System.out.println(rap.getRap_ptnum());
+		//제작의뢰 거래진행 정보 출력(요청)-step1
 		String json = pm.request(rap);
-		System.out.println("(컨트롤러)제작의뢰내역 스타트!!!");
 		return json;
 	}
 
 	@RequestMapping(value = "/revauccancel", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json;charset=utf8")
 	public String revauccancel(@RequestBody revAuctionProgress rap) {
-		System.out.println("(컨트롤러)제작의뢰내역 스텝 1 취소폼!!! 시작!!!");
-		System.out.println(rap.getRap_ptnum());
+		//제작의뢰 거래진행 정보 출력(취소)-step1
 		String json = pm.revauccancel(rap);
-		System.out.println("(컨트롤러)제작의뢰내역  스텝 1 취소폼 마무리!!!");
 		return json;
 	}
 
 	@RequestMapping(value = "/delinumSelect", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json;charset=utf8")
+	//제작의뢰 거래진행 정보 출력(배송보내기)-step2
 	public String delinumSelect(@RequestBody revAuctionProgress rap) {
 		System.out.println("(컨트롤러)제작의뢰내역 스텝 2 취소폼!!! 시작!!!");
 		System.out.println("(컨트롤러)제작의뢰내역 스텝 2 취소폼!!! 중간테스트1 pnum확인 :" + rap.getRap_ptnum());
@@ -113,6 +110,7 @@ public class AjaxMypageController {
 
 	@RequestMapping(value = "/boardwrite", method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json;charset=utf8")
+	//제작의뢰 거래진행 정보 출력(구매후기 및 수령 확인)-step3
 	public String boardwrite(@RequestBody revAuctionProgress rap) {
 		System.out.println("(컨트롤러)제작의뢰내역 스텝 2 구매후기및 수령확인!!! 시작!!!");
 		System.out.println("(컨트롤러)제작의뢰내역 스텝 2 취소폼!!! 중간테스트1 pnum확인 :" + rap.getRap_ptnum());
